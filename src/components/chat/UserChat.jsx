@@ -40,9 +40,9 @@ const UserChat = ({chat, user}) => {
                 <div className="text-content">
                     <div className="name">{recipientUser?.name}</div>
                     <div className="text">
-                        latestMessage?.text && (
+                        {latestMessage?.text && (
                             <span>{truncateText(latestMessage?.text)}</span>
-                        )
+                        )}
                     </div>
                 </div>
             </div>
