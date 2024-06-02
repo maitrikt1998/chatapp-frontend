@@ -1,12 +1,15 @@
 export const baseUrl = "http://localhost:5000/api";
 
 export const postRequest = async(url, body) => {
+    const headers = {};
+    if (!(body instanceof FormData)) {
+        headers["Content-Type"] = "application/json";
+    }
+
     const response  = await fetch(url, {
         method:"POST",
-        headers:{
-            "content-Type" : "application/json"
-        },
-        body
+        headers: headers,
+        body: body,
     })
 
     const data = await response.json()

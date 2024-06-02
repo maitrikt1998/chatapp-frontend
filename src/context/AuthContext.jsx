@@ -11,6 +11,7 @@ export const AuthContextProvider = ({children}) => {
         name: "",
         email: "",
         password: "",
+        image:"",
     });
     const [loginError, setLoginError] = useState(null);
     const [isLoginLoading, setIsLoginLoading] = useState(false);
@@ -40,9 +41,15 @@ export const AuthContextProvider = ({children}) => {
         e.preventDefault();
         setIsRegisterLoading(true);
         setRegisterError(null);
+        const formData = new FormData();
+        formData.append('name', registerInfo.name);
+        formData.append('email', registerInfo.email);
+        formData.append('password', registerInfo.password);
+        formData.append('image', registerInfo.image);
         const response =await postRequest(
             `${baseUrl}/users/register`,
-            JSON.stringify(registerInfo)
+            // JSON.stringify(registerInfo)
+            formData
         );
 
         setIsRegisterLoading(false);

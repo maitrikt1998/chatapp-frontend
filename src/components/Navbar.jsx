@@ -3,7 +3,7 @@ import { Nav, Navbar, Container, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Notification from "./chat/Notification";
-
+import { baseUrl } from "../utils/services";
 const NavBar= () => {
     const { user, logoutUser } = useContext(AuthContext);
     return (
@@ -14,7 +14,17 @@ const NavBar= () => {
                         chatApp
                     </Link>
                 </h2>
-                { user && (<span className="text-warning">Logged In as {user ?.name }</span>)}
+                {/* { user && (<span className="text-warning">Logged In as {user ?.name }</span>)} */}
+                {user && (
+                    <Stack direction="horizontal" gap={3}>
+                        <img
+                            src={`${baseUrl}${user.image}`}
+                            alt="User"
+                            style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                        />
+                        <span className="text-warning">Logged In as {user?.name}</span>
+                    </Stack>
+                )}
                 <Nav>
                     <Stack direction="horizontal" gap={3}>
                         {
